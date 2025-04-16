@@ -1,0 +1,20 @@
+{
+  "name": "ecfr",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "ecfr/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project ecfr --web",
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/ecfr",
+        "main": "ecfr/src/index.ts",
+        "tsConfig": "ecfr/tsconfig.lib.json",
+        "assets": ["ecfr/*.md"]
+      }
+    }
+  }
+}

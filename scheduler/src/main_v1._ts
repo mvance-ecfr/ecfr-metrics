@@ -1,0 +1,149 @@
+import { getStructure, getTitles, EcfrStructure, getVersions } from 'ecfr';
+import { enqueueWork, WorkItem } from 'cache';
+
+// for historical reference, this was an original attempt at the scheduler but there was not a good way of knowing if I had the complete set of data for "now" nor was necessarily not missing
+// other data as well.
+
+async function runScheduler() {
+  console.log('Getting titles...');
+  const titles = await getTitles();
+  const titleDates: { [title: string]: Set<string> } = {}; // the dates that are needed to be collected for each title that the given title changed on
+
+  for (const title of titles) {
+    const titleNumber = String(title.number);
+    console.log(`Processing Title ${titleNumber}`);
+    const versions = await getVersions(titleNumber);
+    const dates = new Set(versions.map((v) => v.date)); // get the unique dates that each title changed on
+    console.log(
+      `Found ${dates.size} versions of the given title from different dates.`
+    );
+    titleDates[titleNumber] = dates;
+  }
+  const dateTitles: { [date: string]: Set<string> } = {}; // the reverse relationship, all the days and the titles that changed on those days (so we can prioritize the work)
+  const maxDateForTitle: { [title: string]: string } = {}; // the most recent date we have for each title so we can start our work here
+
+  for (const title of Object.keys(titleDates)) {
+    for (const date of titleDates[title]) {
+      if (!(date in dateTitles)) {
+        dateTitles[date] = new Set<string>();
+      }
+      dateTitles[date].add(title);
+      if (title in maxDateForTitle) {
+        if (maxDateForTitle[title] < date) {
+          maxDateForTitle[title] = date;
+        }
+      } else {
+        maxDateForTitle[title] = date;
+      }
+    }
+  }
+
+  // remove the work from the later job
+  for (const titleNumber of Object.keys(maxDateForTitle)) {
+    const date = maxDateForTitle[titleNumber];
+    dateTitles[date].delete(titleNumber);
+  }
+
+  for (const titleNumber of Object.keys(maxDateForTitle).sort()) {
+    const date = maxDateForTitle[titleNumber];
+    let structure: EcfrStructure;
+    try {
+      structure = await getStructure(date, titleNumber);
+    } catch (error) {
+      console.error(
+        `Unable to find structure of title ${titleNumber} on date ${date} even though it was the latest date it was known for. This makes no sense and should cause a system failure as we need at least one full title`,
+        error
+      );
+      process.exit(1);
+    }
+    if (structure.reserved) continue;
+    const work = collectWork(date, titleNumber, structure.children);
+    console.log(
+      `Got the structure for LATEST ${date} Title ${titleNumber}. Enqueuing ${work.length} items`
+    );
+    for (const workItem of work) {
+      try {
+        await enqueueWork(workItem);
+      } catch (error) {
+        try {
+          await enqueueWork(workItem); // retry once
+        } catch (error) {
+          console.log('Unable to enqueue work item, skipping', workItem); // probably dangerous but better than killing the entire process
+        }
+      }
+    }
+  }
+
+  console.log(
+    '-----~~~~~!!!!!~~~~~---- One full set of titles and parts have now been retrieved. Retrieving historical data....'
+  );
+
+  const dates = Object.keys(dateTitles).sort().reverse();
+
+  for (const date of dates) {
+    for (const titleNumber of dateTitles[date]) {
+      try {
+        const structure = await getStructure(date, titleNumber);
+        if (structure.reserved) continue;
+
+        const work = collectWork(date, titleNumber, structure.children);
+        console.log(
+          `Got the structure for ${date} Title ${titleNumber}. Enqueuing ${work.length} items`
+        );
+        for (const workItem of work) {
+          await enqueueWork(workItem);
+        }
+      } catch (error) {
+        console.log(
+          `Unable to find structure of title ${titleNumber} on date ${date}. Skipping...`
+        );
+      }
+    }
+  }
+}
+
+function collectWork(
+  date: string,
+  title: string,
+  chapters: EcfrStructure[]
+): WorkItem[] {
+  const work: WorkItem[] = [];
+  for (const chapter of chapters) {
+    if (chapter.reserved || chapter.type !== 'chapter') continue; // need to exclude "subtitles" as they have no agency associated with them (just noise I guess?)
+    const parts: string[] = [];
+    collectParts(parts, date, title, chapter.children);
+    console.log(
+      `Pushing work ${date} Title ${title} Chapter ${chapter.identifier} Agency ${chapter.label_description} - ${parts.length}`
+    );
+    work.push({
+      date,
+      title,
+      chapter: chapter.identifier,
+      agency: chapter.label_description,
+      parts,
+    });
+  }
+  return work;
+}
+
+function collectParts(
+  parts: string[],
+  date: string,
+  title: string,
+  children: EcfrStructure[]
+): void {
+  if (!Array.isArray(children)) return; // sometimes its null
+  for (const child of children) {
+    if (child.reserved) continue;
+    if (child.type == 'part') {
+      parts.push(child.identifier);
+    } else {
+      collectParts(parts, date, title, child.children);
+    }
+  }
+}
+
+runScheduler().catch((err) => {
+  console.error('Scheduler failed:', err);
+  process.exit(1);
+});

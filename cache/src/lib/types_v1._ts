@@ -1,0 +1,17 @@
+// reference for my first solution
+
+// each date/title/chapter/part tuple represents a single piece of XML content that can have a word count
+export interface WorkItem {
+  date: string;
+  title: string;
+  chapter: string;
+  agency: string;
+  parts: string[];
+}
+
+export interface WorkResult {
+  date: string;
+  title: string;
+  agency: string;
+  word_count: number;
+}
