@@ -16,9 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "ecfr": ["ecfr/src/index.ts"],
       "cache": ["cache/src/index.ts"],
-      "db": ["db/src/index.ts"]
+      "db": ["db/src/index.ts"],
+      "ecfr": ["ecfr/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

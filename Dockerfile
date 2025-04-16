@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Build the workspace (adjust target if needed)
-RUN npx nx build scheduler && npx nx build worker
+RUN npx nx build scheduler && npx nx build worker && npx nx build api && npx nx build frontend
 
 # Stage 2: Slim runtime image
 FROM node:20-slim
@@ -26,6 +26,8 @@ WORKDIR /app
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist/scheduler ./dist/scheduler
 COPY --from=builder /app/dist/worker ./dist/worker
+COPY --from=builder /app/dist/api ./dist/api
+COPY --from=builder /app/dist/frontend ./dist/frontend
 
 # Default to running worker — override with CMD in Cloud Run Job
 CMD ["node", "dist/worker/main.js"]

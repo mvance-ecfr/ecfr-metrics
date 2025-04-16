@@ -43,3 +43,21 @@ export async function saveResult(result: WorkResult): Promise<void> {
     result.total_word_count,
   ]);
 }
+
+export async function getMetrics(date: string): Promise<WorkResult[]> {
+  const query = `
+    SELECT agency, total_word_count FROM metrics WHERE effective_date = $1
+  `;
+  const pool = await getPool();
+  const { rows } = await pool.query(query, [date]);
+  return rows;
+}
+
+export async function getDates(): Promise<string[]> {
+  const query = `
+    SELECT DISTINCT effective_date::text FROM metrics
+  `;
+  const pool = await getPool();
+  const { rows } = await pool.query(query);
+  return rows.map((r) => r.effective_date);
+}

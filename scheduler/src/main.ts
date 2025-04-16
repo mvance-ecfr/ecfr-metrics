@@ -2,7 +2,7 @@ import { getVersions, getAgencies } from 'ecfr';
 import { enqueueWork, WorkItemChapter } from 'cache';
 import { max } from 'lodash';
 
-const today = '2025-04-16';
+const today = process.env['EFFECTIVE_DATE'] || '2025-04-16';
 async function runScheduler() {
   console.log('Getting agencies...');
   const agencies = await getAgencies();
@@ -21,6 +21,12 @@ async function runScheduler() {
             ref.subtitle,
             today
           );
+          if (!latestVersion) {
+            console.log(
+              `Unable to find latest version Title ${ref.title} Chapter ${ref.chapter} Subtitle ${ref.subtitle} `
+            );
+            continue;
+          }
           console.log(
             `Enqueueing work: effective ${today} Agency (${
               childAgency.sortable_name
@@ -50,6 +56,12 @@ async function runScheduler() {
         ref.subtitle,
         today
       );
+      if (!latestVersion) {
+        console.log(
+          `Unable to find latest version Title ${ref.title} Chapter ${ref.chapter} Subtitle ${ref.subtitle} `
+        );
+        continue;
+      }
       console.log(
         `Enqueueing work: effective ${today} Agency (${
           topLevelAgency.sortable_name
