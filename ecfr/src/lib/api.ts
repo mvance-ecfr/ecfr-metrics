@@ -1,9 +1,20 @@
 import axios from 'axios';
-import retry from './retry';
-const client = axios.create();
-client.interceptors.response.use(null, retry(client));
-
+import axiosRetry from 'axios-retry';
 import { ECfrTitle, EcfrStructure, EcfrAgency, EcfrVersion } from './types';
+import { getCachedStructure, saveStructureToCache } from 'cache';
+
+const client = axios.create();
+
+axiosRetry(client, {
+  retries: 10,
+  retryCondition: (error) => {
+    return true; // Retry on any error
+  },
+  retryDelay: (retryCount) => {
+    return retryCount * 1000; // Exponential backoff delay
+  },
+});
+
 export async function getTitles(): Promise<ECfrTitle[]> {
   const { data } = await client.get(
     'https://www.ecfr.gov/api/versioner/v1/titles.json'
@@ -15,9 +26,12 @@ export async function getStructure(
   date: string,
   title: number
 ): Promise<EcfrStructure> {
+  const structure = await getCachedStructure(title, date);
+  if (structure) return structure;
   const { data } = await client.get(
     `https://www.ecfr.gov/api/versioner/v1/structure/${date}/title-${title}.json`
   );
+  await saveStructureToCache(title, date, data);
   return data;
 }
 
@@ -25,11 +39,17 @@ export async function getChapterXmlContent(
   date: string,
   title: number,
   chapter: string,
-  part: string | undefined = undefined
+  part: string | undefined = undefined,
+  section: string | undefined = undefined,
+  appendix: string | undefined = undefined
 ): Promise<string> {
   const { data } = await client.get(
     `https://www.ecfr.gov/api/versioner/v1/full/${date}/title-${title}.xml?chapter=${chapter}${
-      part ? `&part=${part}` : ''
+      part
+        ? `&part=${part}${section ? `&section=${section}` : ''}${
+            appendix ? `&appendix=${appendix}` : ''
+          }`
+        : ''
     }`,
     {
       responseType: 'text',
@@ -42,11 +62,15 @@ export async function getSubtitleXmlContent(
   date: string,
   title: number,
   chapter: string,
-  part: string | undefined = undefined
+  part: string | undefined = undefined,
+  section: string | undefined = undefined,
+  appendix: string | undefined = undefined
 ): Promise<string> {
   const { data } = await client.get(
     `https://www.ecfr.gov/api/versioner/v1/full/${date}/title-${title}.xml?subtitle=${chapter}${
       part ? `&part=${part}` : ''
+    }${section ? `&section=${section}` : ''}${
+      appendix ? `&appendix=${appendix}` : ''
     }`,
     {
       responseType: 'text',

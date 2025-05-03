@@ -26,6 +26,10 @@ app.get('/metrics/dates', async (req, res) => {
   res.json(await getDates());
 });
 
+app.get('/metrics', async (req, res) => {
+  res.json(await getMetrics());
+});
+
 app.listen(port, () => {
   console.log(`API running on port ${port}`);
 });

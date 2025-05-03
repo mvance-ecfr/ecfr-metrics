@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import type { WorkResult } from 'cache';
+import { Metric, WorkResult } from 'cache';
 import { AuthTypes, Connector } from '@google-cloud/cloud-sql-connector';
 
 const pgInstanceName = process.env['PGINSTANCE'];
@@ -30,27 +30,58 @@ export async function getPool(): Promise<Pool> {
   return _pool;
 }
 
+export async function hasResult(
+  agency: string,
+  effectiveDate: string,
+  title: number,
+  chapterOrSubtitle: string
+): Promise<boolean> {
+  const query = `SELECT word_count FROM metrics WHERE agency = $1 AND effective_date = $2 AND title = $3 AND chapter_or_subtitle = $4`;
+
+  const pool = await getPool();
+  const { rows } = await pool.query(query, [
+    agency,
+    effectiveDate,
+    title,
+    chapterOrSubtitle,
+  ]);
+  return rows.length > 0 && rows[0].word_count > 0;
+}
+
 export async function saveResult(result: WorkResult): Promise<void> {
   const query = `
-    INSERT INTO metrics (agency, effective_date, total_word_count)
-    VALUES ($1, $2, $3) ON CONFLICT DO NOTHING
+    INSERT INTO metrics (agency, effective_date, title, chapter_or_subtitle, word_count, sections)
+    VALUES ($1, $2, $3, $4, $5, $6) ON CONFLICT (agency, effective_date, title, chapter_or_subtitle) DO UPDATE
+      SET word_count = $5, sections = $6;
   `;
 
   const pool = await getPool();
   await pool.query(query, [
     result.agency,
     result.effective_date,
-    result.total_word_count,
+    result.title,
+    result.chapter || result.subtitle,
+    result.word_count,
+    result.sections,
   ]);
 }
 
-export async function getMetrics(date: string): Promise<WorkResult[]> {
-  const query = `
-    SELECT agency, total_word_count FROM metrics WHERE effective_date = $1
+export async function getMetrics(date?: string | undefined): Promise<Metric[]> {
+  if (date) {
+    const query = `
+    SELECT agency, effective_date::text, SUM(word_count) as total_word_count, SUM(sections) as total_section_count FROM metrics WHERE effective_date = $1 GROUP BY agency, effective_date
   `;
-  const pool = await getPool();
-  const { rows } = await pool.query(query, [date]);
-  return rows;
+    const pool = await getPool();
+    const { rows } = await pool.query(query, [date]);
+    return rows;
+  } else {
+    const query = `
+    SELECT agency, effective_date::text, SUM(word_count) as total_word_count, SUM(sections) as total_section_count FROM metrics GROUP BY agency, effective_date
+  `;
+    const pool = await getPool();
+    const { rows } = await pool.query(query);
+    return rows;
+  }
 }
 
 export async function getDates(): Promise<string[]> {

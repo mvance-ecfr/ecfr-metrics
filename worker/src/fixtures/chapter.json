@@ -1,0 +1,938 @@
+{
+  "identifier": "VIII",
+  "label": " Chapter VIII—Advisory Council on Historic Preservation",
+  "label_level": " Chapter VIII",
+  "label_description": "Advisory Council on Historic Preservation",
+  "reserved": false,
+  "type": "chapter",
+  "size": 220755,
+  "children": [
+    {
+      "identifier": "800",
+      "label": "Part 800—Protection of Historic Properties",
+      "label_level": "Part 800",
+      "label_description": "Protection of Historic Properties",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 113712,
+      "children": [
+        {
+          "identifier": "A",
+          "label": "Subpart A—Purposes and Participants",
+          "label_level": "Subpart A",
+          "label_description": "Purposes and Participants",
+          "reserved": false,
+          "type": "subpart",
+          "volumes": [
+            "3"
+          ],
+          "size": 16409,
+          "children": [
+            {
+              "identifier": "800.1",
+              "label": "§ 800.1 Purposes.",
+              "label_level": "§ 800.1",
+              "label_description": "Purposes.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 2595
+            },
+            {
+              "identifier": "800.2",
+              "label": "§ 800.2 Participants in the Section 106 process.",
+              "label_level": "§ 800.2",
+              "label_description": "Participants in the Section 106 process.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 13814
+            }
+          ],
+          "descendant_range": "800.1 – 800.2"
+        },
+        {
+          "identifier": "B",
+          "label": "Subpart B—The section 106 Process",
+          "label_level": "Subpart B",
+          "label_description": "The section 106 Process",
+          "reserved": false,
+          "type": "subpart",
+          "volumes": [
+            "3"
+          ],
+          "size": 69929,
+          "children": [
+            {
+              "identifier": "800.3",
+              "label": "§ 800.3 Initiation of the section 106 process.",
+              "label_level": "§ 800.3",
+              "label_description": "Initiation of the section 106 process.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 6802
+            },
+            {
+              "identifier": "800.4",
+              "label": "§ 800.4 Identification of historic properties.",
+              "label_level": "§ 800.4",
+              "label_description": "Identification of historic properties.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 10381
+            },
+            {
+              "identifier": "800.5",
+              "label": "§ 800.5 Assessment of adverse effects.",
+              "label_level": "§ 800.5",
+              "label_description": "Assessment of adverse effects.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 9222
+            },
+            {
+              "identifier": "800.6",
+              "label": "§ 800.6 Resolution of adverse effects.",
+              "label_level": "§ 800.6",
+              "label_description": "Resolution of adverse effects.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 9945
+            },
+            {
+              "identifier": "800.7",
+              "label": "§ 800.7 Failure to resolve adverse effects.",
+              "label_level": "§ 800.7",
+              "label_description": "Failure to resolve adverse effects.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 3862
+            },
+            {
+              "identifier": "800.8",
+              "label": "§ 800.8 Coordination With the National Environmental Policy Act.",
+              "label_level": "§ 800.8",
+              "label_description": "Coordination With the National Environmental Policy Act.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 8973
+            },
+            {
+              "identifier": "800.9",
+              "label": "§ 800.9 Council review of section 106 compliance.",
+              "label_level": "§ 800.9",
+              "label_description": "Council review of section 106 compliance.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 5846
+            },
+            {
+              "identifier": "800.10",
+              "label": "§ 800.10 Special requirements for protecting National Historic Landmarks.",
+              "label_level": "§ 800.10",
+              "label_description": "Special requirements for protecting National Historic Landmarks.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 1694
+            },
+            {
+              "identifier": "800.11",
+              "label": "§ 800.11 Documentation standards.",
+              "label_level": "§ 800.11",
+              "label_description": "Documentation standards.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 5911
+            },
+            {
+              "identifier": "800.12",
+              "label": "§ 800.12 Emergency situations.",
+              "label_level": "§ 800.12",
+              "label_description": "Emergency situations.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 3083
+            },
+            {
+              "identifier": "800.13",
+              "label": "§ 800.13 Post-review discoveries.",
+              "label_level": "§ 800.13",
+              "label_description": "Post-review discoveries.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 4210
+            }
+          ],
+          "descendant_range": "800.3 – 800.13"
+        },
+        {
+          "identifier": "C",
+          "label": "Subpart C—Program Alternatives",
+          "label_level": "Subpart C",
+          "label_description": "Program Alternatives",
+          "reserved": false,
+          "type": "subpart",
+          "volumes": [
+            "3"
+          ],
+          "size": 24227,
+          "children": [
+            {
+              "identifier": "800.14",
+              "label": "§ 800.14 Federal agency program alternatives.",
+              "label_level": "§ 800.14",
+              "label_description": "Federal agency program alternatives.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2023-04-12T10:30:05-0400",
+              "size": 17043
+            },
+            {
+              "identifier": "800.15",
+              "label": "§ 800.15 Tribal, State, and local program alternatives. [Reserved]",
+              "label_level": "§ 800.15",
+              "label_description": "§ 800.15 Tribal, State, and local program alternatives. [Reserved]",
+              "reserved": true,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 267
+            },
+            {
+              "identifier": "800.16",
+              "label": "§ 800.16 Definitions.",
+              "label_level": "§ 800.16",
+              "label_description": "Definitions.",
+              "reserved": false,
+              "type": "section",
+              "volumes": [
+                "3"
+              ],
+              "received_on": "2017-01-05T00:00:00-0500",
+              "size": 6917
+            }
+          ],
+          "descendant_range": "800.14 – 800.16"
+        },
+        {
+          "identifier": "Appendix A to Part 800",
+          "label": "Appendix A to Part 800—Criteria for Council Involvement in Reviewing Individual section 106 Cases\n",
+          "label_level": "Appendix A to Part 800",
+          "label_description": "Criteria for Council Involvement in Reviewing Individual section 106 Cases\n",
+          "reserved": false,
+          "type": "appendix",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 3147
+        }
+      ],
+      "descendant_range": "800.1 – 800.16"
+    },
+    {
+      "identifier": "801",
+      "label": "Part 801—Historic Preservation Requirements of the Urban Development Action Grant Program",
+      "label_level": "Part 801",
+      "label_description": "Historic Preservation Requirements of the Urban Development Action Grant Program",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 59774,
+      "children": [
+        {
+          "identifier": "801.1",
+          "label": "§ 801.1 Purpose and authorities.",
+          "label_level": "§ 801.1",
+          "label_description": "Purpose and authorities.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 2505
+        },
+        {
+          "identifier": "801.2",
+          "label": "§ 801.2 Definitions.",
+          "label_level": "§ 801.2",
+          "label_description": "Definitions.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 2539
+        },
+        {
+          "identifier": "801.3",
+          "label": "§ 801.3 Applicant responsibilities.",
+          "label_level": "§ 801.3",
+          "label_description": "Applicant responsibilities.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 11884
+        },
+        {
+          "identifier": "801.4",
+          "label": "§ 801.4 Council comments.",
+          "label_level": "§ 801.4",
+          "label_description": "Council comments.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 17543
+        },
+        {
+          "identifier": "801.5",
+          "label": "§ 801.5 State Historic Preservation Officer responsibilities.",
+          "label_level": "§ 801.5",
+          "label_description": "State Historic Preservation Officer responsibilities.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1965
+        },
+        {
+          "identifier": "801.6",
+          "label": "§ 801.6 Coordination with requirements under the National Environmental Policy Act (42 U.S.C. 4321 <em>et seq.</em>).",
+          "label_level": "§ 801.6",
+          "label_description": "Coordination with requirements under the National Environmental Policy Act (42 U.S.C. 4321 <em>et seq.</em>).",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1901
+        },
+        {
+          "identifier": "801.7",
+          "label": "§ 801.7 Information requirements.",
+          "label_level": "§ 801.7",
+          "label_description": "Information requirements.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 6590
+        },
+        {
+          "identifier": "801.8",
+          "label": "§ 801.8 Public participation.",
+          "label_level": "§ 801.8",
+          "label_description": "Public participation.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1992
+        },
+        {
+          "identifier": "Appendix 1 to Part 801",
+          "label": "Appendix 1 to Part 801—Identification of Properties: General\n",
+          "label_level": "Appendix 1 to Part 801",
+          "label_description": "Identification of Properties: General\n",
+          "reserved": false,
+          "type": "appendix",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 6784
+        },
+        {
+          "identifier": "Appendix 2 to Part 801",
+          "label": "Appendix 2 to Part 801—Special Procedures for Identification and Consideration of Archeological Properties in an Urban Context\n",
+          "label_level": "Appendix 2 to Part 801",
+          "label_description": "Special Procedures for Identification and Consideration of Archeological Properties in an Urban Context\n",
+          "reserved": false,
+          "type": "appendix",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 6071
+        }
+      ],
+      "descendant_range": "801.1 – 801.8"
+    },
+    {
+      "identifier": "805",
+      "label": "Part 805—Procedures for Implementation of National Environmental Policy Act",
+      "label_level": "Part 805",
+      "label_description": "Procedures for Implementation of National Environmental Policy Act",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 8699,
+      "children": [
+        {
+          "identifier": "805.1",
+          "label": "§ 805.1 Background.",
+          "label_level": "§ 805.1",
+          "label_description": "Background.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1458
+        },
+        {
+          "identifier": "805.2",
+          "label": "§ 805.2 Purpose.",
+          "label_level": "§ 805.2",
+          "label_description": "Purpose.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 439
+        },
+        {
+          "identifier": "805.3",
+          "label": "§ 805.3 Applicability.",
+          "label_level": "§ 805.3",
+          "label_description": "Applicability.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1358
+        },
+        {
+          "identifier": "805.4",
+          "label": "§ 805.4 Ensuring environmental documents are actually considered in Council decisionmaking.",
+          "label_level": "§ 805.4",
+          "label_description": "Ensuring environmental documents are actually considered in Council decisionmaking.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2024-06-04T18:40:40-0400",
+          "size": 3171
+        },
+        {
+          "identifier": "805.5",
+          "label": "§ 805.5 Typical classes of action.",
+          "label_level": "§ 805.5",
+          "label_description": "Typical classes of action.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1107
+        },
+        {
+          "identifier": "805.6",
+          "label": "§ 805.6 Interagency cooperation.",
+          "label_level": "§ 805.6",
+          "label_description": "Interagency cooperation.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 811
+        },
+        {
+          "identifier": "805.7",
+          "label": "§ 805.7 Environmental information.",
+          "label_level": "§ 805.7",
+          "label_description": "Environmental information.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 355
+        }
+      ],
+      "descendant_range": "805.1 – 805.7"
+    },
+    {
+      "identifier": "810",
+      "label": "Part 810—Freedom of Information Act Regulations",
+      "label_level": "Part 810",
+      "label_description": "Freedom of Information Act Regulations",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 9594,
+      "children": [
+        {
+          "identifier": "810.1",
+          "label": "§ 810.1 Purpose and scope.",
+          "label_level": "§ 810.1",
+          "label_description": "Purpose and scope.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 734
+        },
+        {
+          "identifier": "810.2",
+          "label": "§ 810.2 Procedure for requesting information.",
+          "label_level": "§ 810.2",
+          "label_description": "Procedure for requesting information.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1802
+        },
+        {
+          "identifier": "810.3",
+          "label": "§ 810.3 Action on requests.",
+          "label_level": "§ 810.3",
+          "label_description": "Action on requests.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 2442
+        },
+        {
+          "identifier": "810.4",
+          "label": "§ 810.4 Appeals.",
+          "label_level": "§ 810.4",
+          "label_description": "Appeals.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1775
+        },
+        {
+          "identifier": "810.5",
+          "label": "§ 810.5 Fees.",
+          "label_level": "§ 810.5",
+          "label_description": "Fees.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 1691
+        },
+        {
+          "identifier": "810.6",
+          "label": "§ 810.6 Exemptions.",
+          "label_level": "§ 810.6",
+          "label_description": "Exemptions.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1150
+        }
+      ],
+      "descendant_range": "810.1 – 810.6"
+    },
+    {
+      "identifier": "811",
+      "label": "Part 811—Employee Responsibilities and Conduct",
+      "label_level": "Part 811",
+      "label_description": "Employee Responsibilities and Conduct",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 681,
+      "children": [
+        {
+          "identifier": "811.1",
+          "label": "§ 811.1 Cross-references to employees' ethical conduct standards, financial disclosure and financial interests regulations and other conduct rules.",
+          "label_level": "§ 811.1",
+          "label_description": "Cross-references to employees' ethical conduct standards, financial disclosure and financial interests regulations and other conduct rules.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 681
+        }
+      ],
+      "descendant_range": "811.1"
+    },
+    {
+      "identifier": "812",
+      "label": "Part 812—Enforcement of Nondiscrimination on the Basis of Handicap in Programs or Activities Conducted by the Advisory Council on Historic Preservation",
+      "label_level": "Part 812",
+      "label_description": "Enforcement of Nondiscrimination on the Basis of Handicap in Programs or Activities Conducted by the Advisory Council on Historic Preservation",
+      "reserved": false,
+      "type": "part",
+      "volumes": [
+        "3"
+      ],
+      "size": 28295,
+      "children": [
+        {
+          "identifier": "812.101",
+          "label": "§ 812.101 Purpose.",
+          "label_level": "§ 812.101",
+          "label_description": "Purpose.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 568
+        },
+        {
+          "identifier": "812.102",
+          "label": "§ 812.102 Application.",
+          "label_level": "§ 812.102",
+          "label_description": "Application.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 306
+        },
+        {
+          "identifier": "812.103",
+          "label": "§ 812.103 Definitions.",
+          "label_level": "§ 812.103",
+          "label_description": "Definitions.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 6116
+        },
+        {
+          "identifier": "812.104-812.109",
+          "label": "§§ 812.104-812.109 [Reserved]",
+          "label_level": "§§ 812.104-812.109",
+          "label_description": "§§ 812.104-812.109 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.110",
+          "label": "§ 812.110 Self-evaluation.",
+          "label_level": "§ 812.110",
+          "label_description": "Self-evaluation.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 1082
+        },
+        {
+          "identifier": "812.111",
+          "label": "§ 812.111 Notice.",
+          "label_level": "§ 812.111",
+          "label_description": "Notice.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 692
+        },
+        {
+          "identifier": "812.112-812.129",
+          "label": "§§ 812.112-812.129 [Reserved]",
+          "label_level": "§§ 812.112-812.129",
+          "label_description": "§§ 812.112-812.129 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.130",
+          "label": "§ 812.130 General prohibitions against discrimination.",
+          "label_level": "§ 812.130",
+          "label_description": "General prohibitions against discrimination.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 4140
+        },
+        {
+          "identifier": "812.131-812.139",
+          "label": "§§ 812.131-812.139 [Reserved]",
+          "label_level": "§§ 812.131-812.139",
+          "label_description": "§§ 812.131-812.139 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.140",
+          "label": "§ 812.140 Employment.",
+          "label_level": "§ 812.140",
+          "label_description": "Employment.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 665
+        },
+        {
+          "identifier": "812.141-812.148",
+          "label": "§§ 812.141-812.148 [Reserved]",
+          "label_level": "§§ 812.141-812.148",
+          "label_description": "§§ 812.141-812.148 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.149",
+          "label": "§ 812.149 Program accessibility: Discrimination prohibited.",
+          "label_level": "§ 812.149",
+          "label_description": "Program accessibility: Discrimination prohibited.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 602
+        },
+        {
+          "identifier": "812.150",
+          "label": "§ 812.150 Program accessibility: Existing facilities.",
+          "label_level": "§ 812.150",
+          "label_description": "Program accessibility: Existing facilities.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 5371
+        },
+        {
+          "identifier": "812.151",
+          "label": "§ 812.151 Program accessibility: New construction and alterations.",
+          "label_level": "§ 812.151",
+          "label_description": "Program accessibility: New construction and alterations.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 700
+        },
+        {
+          "identifier": "812.152-812.159",
+          "label": "§§ 812.152-812.159 [Reserved]",
+          "label_level": "§§ 812.152-812.159",
+          "label_description": "§§ 812.152-812.159 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.160",
+          "label": "§ 812.160 Communications.",
+          "label_level": "§ 812.160",
+          "label_description": "Communications.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 2888
+        },
+        {
+          "identifier": "812.161-812.169",
+          "label": "§§ 812.161-812.169 [Reserved]",
+          "label_level": "§§ 812.161-812.169",
+          "label_description": "§§ 812.161-812.169 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        },
+        {
+          "identifier": "812.170",
+          "label": "§ 812.170 Compliance procedures.",
+          "label_level": "§ 812.170",
+          "label_description": "Compliance procedures.",
+          "reserved": false,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2023-04-12T10:30:05-0400",
+          "size": 3359
+        },
+        {
+          "identifier": "812.171-812.999",
+          "label": "§§ 812.171-812.999 [Reserved]",
+          "label_level": "§§ 812.171-812.999",
+          "label_description": "§§ 812.171-812.999 [Reserved]",
+          "reserved": true,
+          "type": "section",
+          "volumes": [
+            "3"
+          ],
+          "received_on": "2017-01-05T00:00:00-0500",
+          "size": 258
+        }
+      ],
+      "descendant_range": "812.101 – 812.999"
+    },
+    {
+      "identifier": "813-899",
+      "label": "Parts 813-899 [Reserved]",
+      "label_level": "Parts 813-899",
+      "label_description": "Parts 813-899 [Reserved]",
+      "reserved": true,
+      "type": "part",
+      "volumes": [],
+      "size": 0,
+      "children": []
+    }
+  ],
+  "descendant_range": "800 – 899"
+}

@@ -14,7 +14,7 @@ RUN npm ci
 COPY . .
 
 # Build the workspace (adjust target if needed)
-RUN npx nx build scheduler && npx nx build worker && npx nx build api && npx nx build frontend
+RUN npx nx build scheduler --no-cloud && npx nx build worker --no-cloud && npx nx build api --no-cloud && npx nx build frontend --no-cloud
 
 # Stage 2: Slim runtime image
 FROM node:20-slim

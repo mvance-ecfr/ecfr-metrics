@@ -3,9 +3,22 @@
 
 import { Route, Routes, Link } from 'react-router-dom';
 import { WordCountChart } from '../components/WordCountChart';
+import Header from '../components/Header';
+import MainContent from '../components/MainContent';
+import RegulationsTable from '../components/RegulationsTable';
+import Footer from '../components/Footer';
 
 export function App() {
-  return <WordCountChart />;
+  return (
+    <div className="d-flex flex-column min-vh-100">
+      <Header />
+      <main className="flex-grow-1 container py-4">
+        <MainContent />
+        <RegulationsTable />
+      </main>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;

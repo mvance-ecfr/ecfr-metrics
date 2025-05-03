@@ -1,55 +1,90 @@
 import { getVersions, getAgencies } from 'ecfr';
-import { enqueueWork, WorkItemChapter } from 'cache';
+import { enqueueWork, WorkItem } from 'cache';
 import { max } from 'lodash';
+import { hasResult, saveResult } from 'db';
 
-const today = process.env['EFFECTIVE_DATE'] || '2025-04-16';
+const today = process.env['EFFECTIVE_DATE'] || '2025-05-01';
 async function runScheduler() {
   console.log('Getting agencies...');
   const agencies = await getAgencies();
-
   for (const topLevelAgency of agencies) {
-    if (
-      Array.isArray(topLevelAgency.children) &&
-      topLevelAgency.children.length
-    ) {
-      for (const childAgency of topLevelAgency.children) {
-        const chapters: WorkItemChapter[] = [];
-        for (const ref of childAgency.cfr_references) {
-          const latestVersion = await getLatestVersion(
+    for (const childAgency of topLevelAgency.children ?? []) {
+      for (const ref of childAgency.cfr_references) {
+        if (
+          await hasResult(
+            topLevelAgency.name,
+            today,
             ref.title,
-            ref.chapter,
-            ref.subtitle,
-            today
-          );
-          if (!latestVersion) {
-            console.log(
-              `Unable to find latest version Title ${ref.title} Chapter ${ref.chapter} Subtitle ${ref.subtitle} `
-            );
-            continue;
-          }
+            ref.chapter || ref.subtitle
+          )
+        ) {
           console.log(
-            `Enqueueing work: effective ${today} Agency (${
-              childAgency.sortable_name
-            }), Title (${ref.title}), Chapter/Subtitle (${
+            `Already had result for Agency ${topLevelAgency.name} Title ${
+              ref.title
+            } Chapter/Subtitle ${
               ref.chapter || ref.subtitle
-            }), Date (${latestVersion.date})`
+            } for effective date ${today}. Skipping...`
           );
-          chapters.push({
-            date: latestVersion.date,
-            title: ref.title,
-            chapter: ref.chapter,
-            subtitle: ref.subtitle,
-          });
+          continue;
         }
-        await enqueueWork({
-          agency: childAgency.sortable_name,
+        const latestVersion = await getLatestVersion(
+          ref.title,
+          ref.chapter,
+          ref.subtitle,
+          today
+        );
+        if (!latestVersion) {
+          console.log(
+            `Unable to find latest version Title ${ref.title} Chapter ${ref.chapter} Subtitle ${ref.subtitle} `
+          );
+          continue;
+        }
+        // save a preliminary result to the DB so we can know if we error later
+        await saveResult({
+          agency: topLevelAgency.name,
           effective_date: today,
-          chapters,
+          title: ref.title,
+          subtitle: ref.subtitle,
+          chapter: ref.chapter,
+          word_count: 0,
+          sections: 0,
         });
+        await enqueueWork({
+          agency: topLevelAgency.name,
+          effective_date: today,
+          date: latestVersion.date,
+          title: ref.title,
+          chapter: ref.chapter,
+          subtitle: ref.subtitle,
+        });
+
+        console.log(
+          `Enqueueing work: effective ${today} Agency (${
+            topLevelAgency.name
+          }), Title (${ref.title}), Chapter/Subtitle (${
+            ref.chapter || ref.subtitle
+          }), Date (${latestVersion.date})`
+        );
       }
     }
-    const chapters: WorkItemChapter[] = [];
     for (const ref of topLevelAgency.cfr_references) {
+      if (
+        await hasResult(
+          topLevelAgency.name,
+          today,
+          ref.title,
+          ref.chapter || ref.subtitle
+        )
+      ) {
+        console.log(
+          `Already had result for Agency ${topLevelAgency.name} Title ${
+            ref.title
+          } Chapter/Subtitle ${
+            ref.chapter || ref.subtitle
+          } for effective date ${today}. Skipping...`
+        );
+        continue;
+      }
       const latestVersion = await getLatestVersion(
         ref.title,
         ref.chapter,
@@ -64,23 +99,32 @@ async function runScheduler() {
       }
       console.log(
         `Enqueueing work: effective ${today} Agency (${
-          topLevelAgency.sortable_name
+          topLevelAgency.name
         }), Title (${ref.title}), Chapter/Subtitle (${
           ref.chapter || ref.subtitle
         }), Date (${latestVersion.date})`
       );
-      chapters.push({
+      await saveResult({
+        agency: topLevelAgency.name,
+        effective_date: today,
+        title: ref.title,
+        subtitle: ref.subtitle,
+        chapter: ref.chapter,
+        word_count: 0,
+        sections: 0,
+      });
+      await enqueueWork({
+        agency: topLevelAgency.name,
+        effective_date: today,
         date: latestVersion.date,
         title: ref.title,
         chapter: ref.chapter,
         subtitle: ref.subtitle,
       });
     }
-    await enqueueWork({
-      agency: topLevelAgency.sortable_name,
-      effective_date: today,
-      chapters,
-    });
+    console.log(
+      `Enqueued all work: effective ${today} Agency (${topLevelAgency.name})`
+    );
   }
 }
 

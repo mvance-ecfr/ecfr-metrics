@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+  --bs-primary-rgb: #000000;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Custom styles for Headless UI dropdown */
+.listbox-options {
+  position: absolute;
+  z-index: 10;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  margin-top: 0.25rem;
+  width: 150px;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  padding: 3px;
+}
+
+.listbox-option {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.listbox-option:hover {
+  background-color: #F0F0F0;
+  color: #000000;
+}
+
+.bg-primary {
+  background-color: #000000 !important;
+}
+.bg-dark {
+  background-color: #000000 !important;
+}
+
+.btn-primary {
+  background-color: #000000 !important;
+}
