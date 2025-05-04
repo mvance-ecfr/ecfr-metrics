@@ -10,6 +10,7 @@ import {
   findChildByIdentifierAndType,
   SingleRegulationItem,
 } from './util';
+import { AxiosError } from 'axios';
 
 export async function chapterWordCount(
   item: WorkItem
@@ -36,24 +37,35 @@ export async function chapterWordCount(
   let totalWordCount = 0;
   for (const { part, section, appendix } of sections) {
     const retrieveStart = Date.now();
-    const content = await getChapterXmlContent(
-      item.date,
-      item.title,
-      item.chapter,
-      part,
-      section,
-      appendix
-    );
-    const wordCount = countWords(content);
-    const retrieveEnd = Date.now();
-    totalWordCount += wordCount;
-    console.log(
-      `Retrieved Agency ${item.agency} Date (${item.date}) Title (${
-        item.title
-      }) Chapter (${item.chapter}) Part ${part} - ${wordCount} [${
-        retrieveEnd - retrieveStart
-      }ms]`
-    );
+    try {
+      const content = await getChapterXmlContent(
+        item.date,
+        item.title,
+        item.chapter,
+        part,
+        section,
+        appendix
+      );
+      const wordCount = countWords(content);
+      const retrieveEnd = Date.now();
+      totalWordCount += wordCount;
+      console.log(
+        `Retrieved Agency ${item.agency} Date (${item.date}) Title (${
+          item.title
+        }) Chapter (${item.chapter}) Part ${part} - ${wordCount} [${
+          retrieveEnd - retrieveStart
+        }ms]`
+      );
+    } catch (error: any) {
+      console.error(
+        `$$$___ Unable to retrieve Agency ${item.agency} Date (${
+          item.date
+        }) Title (${item.title}) Chapter (${
+          item.chapter
+        }) Part ${part} Section/Appendix ${section || appendix}. Skipping...`,
+        error
+      );
+    }
   }
   const totalRetrieveEnd = Date.now();
   console.log(

@@ -1,8 +1,3 @@
-// Uncomment this line to use CSS modules
-// import styles from './app.module.css';
-
-import { Route, Routes, Link } from 'react-router-dom';
-import { WordCountChart } from '../components/WordCountChart';
 import Header from '../components/Header';
 import MainContent from '../components/MainContent';
 import RegulationsTable from '../components/RegulationsTable';

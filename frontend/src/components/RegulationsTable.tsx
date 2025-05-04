@@ -2,21 +2,18 @@ import React, { useState } from 'react';
 import { Listbox } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
 import { useQuery } from '@tanstack/react-query';
+import { WordCountEntry } from '../types';
+import { formatCount } from '../util';
 
-interface WordCountEntry {
+export interface WordCountCalculation {
   agency: string;
-  total_word_count: string; // it's a string in the API, we'll convert it
-  total_section_count: string;
-}
-
-function formatCount(count: number): string {
-  if (count > 999999) {
-    return (count / 1000000).toFixed(2) + 'M';
-  } else if (count > 999) {
-    return (count / 1000).toFixed(2) + 'K';
-  } else {
-    return count.toString();
-  }
+  starting_word_count: number;
+  starting_section_count: number;
+  total_word_count: number;
+  total_section_count: number;
+  percent_increased: number;
+  words_increased: number;
+  sections_increased: number;
 }
 
 const RegulationsTable: React.FC = () => {
@@ -34,19 +31,54 @@ const RegulationsTable: React.FC = () => {
 
   if (isLoading) return <p>Loading chart...</p>;
   if (error) return <p>Error loading data</p>;
-  const sortedData = [...data!].sort((a, b) => {
-    if (sortBy === 'Words')
-      return parseInt(b.total_word_count) - parseInt(a.total_word_count);
+
+  const dataByAgency: { [agency: string]: WordCountCalculation } = {};
+  for (const item of data!) {
+    let agencyData = dataByAgency[item.agency];
+    if (!agencyData) {
+      dataByAgency[item.agency] = agencyData = { agency: item.agency } as any;
+    }
+    if (item.effective_date.startsWith('2024')) {
+      // starting {
+      agencyData.starting_section_count = parseInt(item.total_section_count);
+      agencyData.starting_word_count = parseInt(item.total_word_count);
+    } else {
+      agencyData.total_section_count = parseInt(item.total_section_count);
+      agencyData.total_word_count = parseInt(item.total_word_count);
+    }
+    if (agencyData.starting_section_count && agencyData.total_word_count) {
+      // we have all the data, calculate
+      agencyData.words_increased =
+        agencyData.total_word_count - agencyData.starting_word_count;
+      agencyData.sections_increased =
+        agencyData.total_section_count - agencyData.starting_section_count;
+      agencyData.percent_increased =
+        (agencyData.words_increased / agencyData.starting_word_count) * 100;
+    }
+  }
+
+  const sortedData = [...Object.values(dataByAgency)].sort((a, b) => {
+    if (sortBy === 'Words') return b.total_word_count - a.total_word_count;
     if (sortBy === 'Sections')
-      return parseInt(b.total_section_count) - parseInt(a.total_section_count);
+      return b.total_section_count - a.total_section_count;
     if (sortBy === 'Agency') return a.agency.localeCompare(b.agency);
+    if (sortBy == 'Percent Increased')
+      return (
+        (b.percent_increased ?? 0) - (a.percent_increased ?? 0) ||
+        a.agency.localeCompare(b.agency)
+      );
+    if (sortBy == 'Words Increased')
+      return (
+        (b.words_increased ?? 0) - (a.words_increased ?? 0) ||
+        a.agency.localeCompare(b.agency)
+      );
     return 0;
   });
 
   return (
     <section>
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h2 className="h4">Regulations Data</h2>
+        <h2 className="h4">Federal Regulations by Agency</h2>
         <Listbox value={sortBy} onChange={setSortBy}>
           <div className="position-relative">
             <Listbox.Button className="btn btn-primary d-flex align-items-center">
@@ -66,6 +98,18 @@ const RegulationsTable: React.FC = () => {
               <Listbox.Option value="Sections" className="listbox-option">
                 Sections
               </Listbox.Option>
+              <Listbox.Option
+                value="Percent Increased"
+                className="listbox-option"
+              >
+                Percent Increased
+              </Listbox.Option>
+              <Listbox.Option
+                value="Words Increased"
+                className="listbox-option"
+              >
+                Words Increased
+              </Listbox.Option>
             </Listbox.Options>
           </div>
         </Listbox>
@@ -77,16 +121,27 @@ const RegulationsTable: React.FC = () => {
               <thead>
                 <tr>
                   <th scope="col">Agency</th>
-                  <th scope="col">Words</th>
+                  <th scope="col">Words in 2024</th>
+                  <th scope="col">Sections in 2024</th>
+                  <th scope="col">Words Today</th>
                   <th scope="col">Sections of Regulation</th>
+
+                  <th scope="col">Percent Increased</th>
+                  <th scope="col">Words Increased</th>
+                  <th scope="col">Sections Increased</th>
                 </tr>
               </thead>
               <tbody>
                 {sortedData.map((item, index) => (
                   <tr key={index}>
                     <td>{item.agency}</td>
-                    <td>{formatCount(parseInt(item.total_word_count))}</td>
-                    <td>{formatCount(parseInt(item.total_section_count))}</td>
+                    <td>{formatCount(item.starting_word_count)}</td>
+                    <td>{formatCount(item.starting_section_count)}</td>
+                    <td>{formatCount(item.total_word_count)}</td>
+                    <td>{formatCount(item.total_section_count)}</td>
+                    <td>{item.percent_increased?.toFixed(1)}%</td>
+                    <td>{formatCount(item.words_increased)}</td>
+                    <td>{formatCount(item.sections_increased)}</td>
                   </tr>
                 ))}
               </tbody>
